@@ -4,14 +4,14 @@ import 'package:safiritours/features/splash/splash_screen.dart';
 import 'package:safiritours/features/welcome/welcome_view.dart';
 
 class AppRoutes{
-  static const INITIAL = "/";
+  static const SPLASH = "/";
   static const WELCOME = "/Welcome";
   static const SIGN_IN = "/sign_in";
   static const SIGN_UP = "/sign_up";
 
   Map<String, WidgetBuilder> routes(){
     return {
-      INITIAL: (context) => SplashScreen(),
+      SPLASH: (context) => SplashScreen(),
       WELCOME: (context) => WelcomeView(),
       SIGN_IN: (context) => LoginView(),
     };
