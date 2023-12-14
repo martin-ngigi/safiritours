@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "700021349863",
+    "project_id": "safiritours-a5d5f",
+    "storage_bucket": "safiritours-a5d5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700021349863:android:395da3ba48dc39dfce3142",
+        "android_client_info": {
+          "package_name": "com.safiribytes.safiritours"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAziO6yYi6cDul-Lsu2sl09FDO0lBsx4vM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
