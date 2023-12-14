@@ -1,66 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:safiritours/common/values/colors.dart';
 
-import '../../common/values/colors.dart';
-
-Widget password_field({
+Widget textform_field({
   required String hintText,
   required IconData icon,
   required TextInputType textInputType,
   required int maxLines,
   required TextEditingController controller,
-  required bool enabled, ///for password purposes
-  required BuildContext context,
+  required bool enabled,
   void Function(String value)? onTextChange,
-
-
 }){
-  // final appTheme = AppTheme.of(context);
   return Padding(
     padding: EdgeInsets.only(bottom: 0),
     child: TextFormField(
       onChanged: (value) => onTextChange!(value),
-      obscureText: true,
-      cursorColor: AppColors.primaryColor,
+      cursorColor: Colors.green,
       controller: controller,
       keyboardType: textInputType,
       maxLines: maxLines,
       enabled: enabled,
-      style:TextStyle(
-          fontSize: 18,
+      style: TextStyle(
+          // fontSize: size ??14,
           fontWeight: FontWeight.w300,
           fontFamily: "Roboto",
-          overflow: TextOverflow.ellipsis,
+          overflow: TextOverflow.ellipsis
         // color: color
       ),
       decoration: InputDecoration(
           labelText: hintText,
           hintText: hintText,
+          labelStyle: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w300,
+              fontFamily: "Roboto",
+              overflow: TextOverflow.ellipsis,
+              color: AppColors.primaryThirdElementText
+            // color: color
+          ),
           contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10),
           hintStyle:TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w300,
               fontFamily: "Roboto",
               overflow: TextOverflow.ellipsis,
-              color: AppColors.primaryFourthElementText
-            // color: color
-          ),
-          labelStyle:TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w300,
-              fontFamily: "Roboto",
-              overflow: TextOverflow.ellipsis,
-            color: AppColors.primaryFourthElementText
+            color: AppColors.primaryThirdElementText
             // color: color
           ),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide:  BorderSide(color: AppColors.primaryFourthElementText)
+              borderSide: const BorderSide(color: AppColors.primaryFourthElementText)
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide:  BorderSide(color: AppColors.primaryColor),
+              borderRadius: BorderRadius.circular(15),
+              borderSide: const BorderSide(color: AppColors.primaryColor)
           ),
           errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: const BorderSide(color: AppColors.primaryColor)
+          ),
+          disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(color: AppColors.primaryColor)
           ),
@@ -68,11 +67,9 @@ Widget password_field({
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(color: AppColors.primaryColor)
           ),
-          // suffixIcon: isObsecure ?  Icon(Icons.edit, color: Colors.black,) : Container(),
-
-          suffixIcon: Icon(Icons.lock, color: AppColors.primaryFourthElementText),
+          suffixIcon: enabled ? Icon(icon, color:AppColors.primaryFourthElementText) : null,
           alignLabelWithHint: true,
-          // fillColor: appTheme.isDark ? Colors.grey : Colors.white,
+          // fillColor: Colors.grey[100],
           // filled: true
       ),
       validator: (value){

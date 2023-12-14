@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: AppRoutes.SPLASH,
             routes: AppRoutes().routes(),
-            // home: WelcomeView(),
+            // home: FormValidate(),
           ),
         )
     );
