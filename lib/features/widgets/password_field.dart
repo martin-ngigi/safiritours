@@ -18,7 +18,8 @@ Widget password_field({
   return Padding(
     padding: EdgeInsets.only(bottom: 0),
     child: TextFormField(
-      onChanged: (value) => onTextChange!(value),
+      // onChanged: (value) => onTextChange!(value),
+      onChanged: onTextChange,
       obscureText: true,
       cursorColor: AppColors.primaryColor,
       controller: controller,

@@ -34,6 +34,14 @@ class _LoginViewState extends State<LoginView> {
     _initLogin();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailcontroller.dispose();
+    _passwordcontroller.dispose();
+  }
+
   _initLogin(){
     authController = BlocProvider.of(NavigationService.navigatorKey.currentContext!);
   }
@@ -177,8 +185,11 @@ class _LoginViewState extends State<LoginView> {
                                   if(_formKey.currentState!.validate()){
                                     print("I am here");
                                     _formKey.currentState!.save();
+                                    authController.loginWithEmailAndPassword(
+                                        email: _emailcontroller.text.trim(),
+                                        password: _passwordcontroller.text.trim()
+                                    );
                                   }
-                                  //SignInController(context: context).handleSignIn("email");
                                 },
                                 context: context
                             ),

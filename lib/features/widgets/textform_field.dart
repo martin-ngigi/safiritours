@@ -9,12 +9,14 @@ Widget textform_field({
   required int maxLines,
   required TextEditingController controller,
   required bool enabled,
-  void Function(String value)? onTextChange,
+  // void Function(String value)? onTextChange,
+  ValueChanged<String>? onChange,
 }){
   return Padding(
     padding: EdgeInsets.only(bottom: 0),
     child: TextFormField(
-      onChanged: (value) => onTextChange!(value),
+      // onChanged: (value) => onTextChange!(value),
+      onChanged: onChange,
       cursorColor: Colors.green,
       controller: controller,
       keyboardType: textInputType,

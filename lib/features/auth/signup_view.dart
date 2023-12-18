@@ -45,6 +45,16 @@ class _SignUpViewState extends State<SignUpView> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _rePasswordController.dispose();
+    _nameController.dispose();
+  }
+
+  @override
   Widget build(BuildContext buildContext) {
 
     return BlocBuilder<AuthController, int>(builder: (state, context){
@@ -192,14 +202,17 @@ class _SignUpViewState extends State<SignUpView> {
                                     print("I am here");
                                     // If the form is valid, save the input value
                                     _formKey.currentState!.save();
+
+                                    authController.emailAndPasswordRegistration(
+                                        name: _nameController.text.trim(),
+                                        email: _emailController.text.toLowerCase().trim(),
+                                        password: _passwordController.text.trim(),
+                                        confirmPassword: _rePasswordController.text.trim()
+                                    );
+
                                     return;
                                   }
-                                  authController.emailAndPasswordRegistration(
-                                      name: _nameController.text.trim(),
-                                      email: _emailController.text.toLowerCase().trim(),
-                                      password: _passwordController.text.trim(),
-                                      confirmPassword: _rePasswordController.text.trim()
-                                  );
+
                                 },
                                 context: buildContext
                             ),

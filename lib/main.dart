@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:safiritours/common/routes/route_helper.dart';
 import 'package:safiritours/features/auth/auth_controller.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
+            builder: EasyLoading.init(),/// Initialize easy loading,
             initialRoute: AppRoutes.SPLASH,
             routes: AppRoutes().routes(),
             // home: FormValidate(),
