@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:safiritours/common/models/login_request_model.dart';
 import 'package:safiritours/common/routes/route_helper.dart';
 import 'package:safiritours/features/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
@@ -88,8 +89,31 @@ class AuthController extends Cubit<int>{
         return;
       }
 
-      ProgressLoader().dismiss();
-      toastInfo(msg: "Auth success");
+      final user = credential.user;
+      if(user != null){
+        ProgressLoader().dismiss();
+        toastInfo(msg: "Auth success");
+
+        String? displayName = user.displayName;
+        String? email = user.email;
+        String? id = user.uid;
+        String? photoUrl = user.photoURL;
+        String phone = user.phoneNumber??"";
+
+        LoginRequestModel loginModel = LoginRequestModel();
+        loginModel.avatar = photoUrl;
+        loginModel.name = displayName;
+        loginModel.email = email;
+        loginModel.openId = id;
+        loginModel.userType = "C";
+        loginModel.type = 1; /// type 1 means email login
+        loginModel.phone = phone;
+
+        await asyncPostAllData(loginModel);
+
+      }
+
+
     }
     on FirebaseException catch (e){
       ProgressLoader().dismiss();
@@ -122,6 +146,12 @@ class AuthController extends Cubit<int>{
       toastInfo(msg: "Unknown Error occurred.");
       print("-------> [AuthController] Unknown Error occurred. ${e}");
     }
+  }
+
+  asyncPostAllData(LoginRequestModel loginModel) async {
+    ///show loading progress indicator
+    ProgressLoader().show();
+
   }
 
 }
