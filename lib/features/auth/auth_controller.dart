@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:safiritours/common/models/login_request_model.dart';
 import 'package:safiritours/common/routes/route_helper.dart';
+import 'package:safiritours/features/auth/auth_service.dart';
 import 'package:safiritours/features/widgets/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import '../../common/utils/navigatorkey.dart';
@@ -62,6 +64,10 @@ class AuthController extends Cubit<int>{
   }
 
   loginWithEmailAndPassword({required String email, required String password}) async{
+    // LoginRequestModel loginModel = LoginRequestModel();
+    // await asyncPostAllData(loginModel);
+    // return;
+
     try {
 
       if(email.isEmpty){
@@ -98,7 +104,7 @@ class AuthController extends Cubit<int>{
         String? email = user.email;
         String? id = user.uid;
         String? photoUrl = user.photoURL;
-        String phone = user.phoneNumber??"";
+        //String phone = user.phoneNumber??"";
 
         LoginRequestModel loginModel = LoginRequestModel();
         loginModel.avatar = photoUrl;
@@ -107,7 +113,7 @@ class AuthController extends Cubit<int>{
         loginModel.openId = id;
         loginModel.userType = "C";
         loginModel.type = 1; /// type 1 means email login
-        loginModel.phone = phone;
+        //loginModel.phone = phone;
 
         await asyncPostAllData(loginModel);
 
@@ -151,6 +157,13 @@ class AuthController extends Cubit<int>{
   asyncPostAllData(LoginRequestModel loginModel) async {
     ///show loading progress indicator
     ProgressLoader().show();
+    Response response = await AuthService.login(loginModel: loginModel);
+
+    if(response.statusCode == 200 || response.statusCode == 201){
+      Navigator.of(NavigationService.navigatorKey.currentContext!).pushNamed(AppRoutes.HOME);
+
+    }
+    ProgressLoader().dismiss();
 
   }
 

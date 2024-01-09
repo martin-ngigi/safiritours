@@ -1,7 +1,7 @@
 class LoginRequestModel {
   String? name;
   String? email;
-  String? phone;
+  //String? phone;
   String? userType;
   int? type;
   String? openId;
@@ -15,7 +15,7 @@ class LoginRequestModel {
       {
         this.name,
         this.email,
-        this.phone,
+       //this.phone,
         this.userType,
         this.type,
         this.openId,
@@ -28,7 +28,7 @@ class LoginRequestModel {
   LoginRequestModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     email = json['email'];
-    phone = json['phone'];
+    //phone = json['phone'];
     userType = json['user_type'];
     type = json['type'];
     openId = json['open_id'];
@@ -43,7 +43,7 @@ class LoginRequestModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['email'] = this.email;
-    data['phone'] = this.phone;
+    //data['phone'] = this.phone;
     data['user_type'] = this.userType;
     data['type'] = this.type;
     data['open_id'] = this.openId;

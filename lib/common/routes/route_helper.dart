@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:safiritours/features/auth/login_view.dart';
 import 'package:safiritours/features/auth/signup_view.dart';
+import 'package:safiritours/features/home/home_view.dart';
 import 'package:safiritours/features/splash/splash_screen.dart';
 import 'package:safiritours/features/welcome/welcome_view.dart';
 
@@ -9,6 +10,7 @@ class AppRoutes{
   static const WELCOME = "/Welcome";
   static const SIGN_IN = "/sign_in";
   static const SIGN_UP = "/sign_up";
+  static const HOME = "/home";
 
   Map<String, WidgetBuilder> routes(){
     return {
@@ -16,6 +18,7 @@ class AppRoutes{
       WELCOME: (context) => WelcomeView(),
       SIGN_IN: (context) => LoginView(),
       SIGN_UP: (context) => SignUpView(),
+      HOME: (context) => HomeView(),
     };
   }
 }
